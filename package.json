@@ -1,6 +1,6 @@
 {
   "name": "nuxt-craftcms",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Nuxt module to use craft cms query builder in nuxt",
   "repository": "https://github.com/samuelreichor/nuxt-craftcms",
   "license": "MIT",
@@ -51,7 +51,7 @@
     "vitest": "^2.1.1",
     "vue-tsc": "^2.1.6"
   },
-    "lint-staged": {
+  "lint-staged": {
     "*.{js,vue,ts}": "npm run lint:fix"
   }
 }
