@@ -1,31 +1,25 @@
-<!--
-Get your module up and running quickly.
+<div align="center">
+	<a href="https://npmjs.com/package/nuxt-craftcms"  align="center">
+		<img src="https://online-images-sr.netlify.app/assets/nuxt-craft.png"  alt="Vue craftcms banner">
+	</a>
+	<h1 align="center">nuxt-craftcms</h1>
+  <p align="center">
+    Write Craft CMS queries in nuxt, like in twig. 🚀🚀
+  </p>
+  <br />
+</div>
 
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: nuxt-craftcms
-- Description: My new Nuxt module
--->
+<p align="center">
+  <a href="https://npmjs.com/package/nuxt-craftcms">
+    <img src="https://img.shields.io/npm/v/nuxt-craftcms/latest.svg?style=flat-square" alt="Nuxt craftcms latest version" />
+  </a>
+  <a href="https://npmjs.com/package/nuxt-craftcms" rel="nofollow">
+    <img src="https://img.shields.io/npm/dt/nuxt-craftcms.svg?style=flat-square" alt="Nuxt craftcms downloads">
+  </a>
+</p>
 
-# My Module
-
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
-
-My new Nuxt module for doing amazing things.
-
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-craftcms?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
-
-## Features
-
-<!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
+> [!WARNING]  
+> This npm package is still in production and important features may change.
 
 ## Quick Setup
 
@@ -35,50 +29,30 @@ Install the module to your Nuxt application with one command:
 npx nuxi module add nuxt-craftcms
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+Add a craftcms config to your `nuxt.config.js` and replace the baseUrl with your Craft CMS url.
 
+```typescript
+import { defineNuxtConfig } from 'nuxt';
 
-## Contribution
+export default defineNuxtConfig({
+  modules: ['nuxt-craftcms'],
 
-<details>
-  <summary>Local development</summary>
-  
-  ```bash
-  # Install dependencies
-  npm install
-  
-  # Generate type stubs
-  npm run dev:prepare
-  
-  # Develop with the playground
-  npm run dev
-  
-  # Build the playground
-  npm run dev:build
-  
-  # Run ESLint
-  npm run lint
-  
-  # Run Vitest
-  npm run test
-  npm run test:watch
-  
-  # Release new version
-  npm run release
-  ```
+  craftcms: {
+    baseUrl: 'https://backend-craftcms.ddev.site'
+  }
+});
+```
 
-</details>
+## Further Resources
 
+- [Craft CMS Plugin](https://github.com/samuelreichor/craft-query-api)
+- [Core JS Querybuilder](https://github.com/samuelreichor/js-craftcms-api)
+- [Vue Craft](https://github.com/samuelreichor/vue-craftcms)
 
-<!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/nuxt-craftcms/latest.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-version-href]: https://npmjs.com/package/nuxt-craftcms
+## Support
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-craftcms.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-downloads-href]: https://npmjs.com/package/nuxt-craftcms
+- Bugs or Feature Requests? [Submit an issue](/../../issues/new).
 
-[license-src]: https://img.shields.io/npm/l/nuxt-craftcms.svg?style=flat&colorA=020420&colorB=00DC82
-[license-href]: https://npmjs.com/package/nuxt-craftcms
+## Contributing
 
-[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
-[nuxt-href]: https://nuxt.com
+Contributions are welcome! <3
