@@ -15,7 +15,12 @@ jobs:
         with:
           node-version: 20
 
-      - run: npm install --frozen-lockfile
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+
+      - name: Prepare
+        run: npm run dev:prepare
+
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
