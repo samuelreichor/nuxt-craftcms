@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   modules: ['../src/module'],
 
   craftcms: {
-    baseUrl: 'https://backend-craftcms.ddev.site',
+    baseUrl: 'https://backend-craftcms.ddev.site:8443',
   },
 
   devtools: { enabled: true },

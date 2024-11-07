@@ -1,16 +1,9 @@
-import type { Ref } from 'vue'
 import type { ElementType } from 'js-craftcms-api'
 import { useCraftUrlBuilder } from 'vue-craftcms'
-import { useFetch } from '#imports'
+import { useAsyncData } from '#imports'
 
-interface FetchResult<T = unknown> {
-  data: Ref<T | null>
-  error: Ref<unknown | null>
-}
-
-async function fetchFn(url: string): Promise<FetchResult> {
-  const { data, error } = await useFetch(url)
-  return { data, error }
+function fetchFn(url: string) {
+  return useAsyncData(`craftcms:${url}`, () => $fetch(url))
 }
 
 export function useCraftQuery<T extends ElementType>(elementType: T) {
@@ -19,14 +12,14 @@ export function useCraftQuery<T extends ElementType>(elementType: T) {
   return {
     ...queryBuilder,
 
-    async one() {
+    one() {
       const url = queryBuilder.buildUrl('one')
-      return await fetchFn(url)
+      return fetchFn(url)
     },
 
-    async all() {
+    all() {
       const url = queryBuilder.buildUrl('all')
-      return await fetchFn(url)
+      return fetchFn(url)
     },
   }
 }
