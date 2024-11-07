@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 0.1.2
+
+### Patch Changes
+
+- 515ab3c: Refactor useCraftQuery composable to use useAsyncData for more control
+
 ## 0.1.1
 
 ### Patch Changes
