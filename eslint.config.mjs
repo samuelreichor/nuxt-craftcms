@@ -12,4 +12,8 @@ export default createConfigForNuxt({
       './playground',
     ],
   },
+
 })
+  .overrideRules({
+    'vue/multi-word-component-names': 0,
+  })
