@@ -32,8 +32,9 @@ export default defineNuxtModule<CraftCmsOptions>({
 
     // Add auto imports for components
     const names = [
-      'CraftCmsPage',
-      'CraftCmsArea',
+      'CraftPage',
+      'CraftArea',
+      'CraftNotImplemented',
     ]
     for (const name of names) {
       addComponent({
