@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 0.2.0
+
+### Minor Changes
+
+- df25869: Fix wrong naming of the exported components and update vue-craftcms
+
 ## 0.1.2
 
 ### Patch Changes
