@@ -1,7 +1,7 @@
 import { addPlugin, defineNuxtModule, addImportsDir, addComponent, createResolver } from '@nuxt/kit'
-import type { CraftCmsOptions } from 'vue-craftcms'
+import { defaultOptions, type CraftCmsOptions } from 'vue-craftcms'
 
-export default defineNuxtModule<CraftCmsOptions>({
+export default defineNuxtModule<Required<CraftCmsOptions>>({
   meta: {
     name: 'nuxt-craftcms',
     configKey: 'craftcms',
@@ -10,11 +10,7 @@ export default defineNuxtModule<CraftCmsOptions>({
     },
   },
   // Default configuration options of the Nuxt module
-  defaults: {
-    baseUrl: '',
-    debug: false,
-    registerComponents: true,
-  },
+  defaults: defaultOptions,
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
