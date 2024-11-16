@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 0.2.1
+
+### Patch Changes
+
+- b82240f: Update vue-craftcms and add new config option. Update Readme.
+
 ## 0.2.0
 
 ### Minor Changes
