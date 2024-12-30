@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 0.2.2
+
+### Patch Changes
+
+- 669f6dd: Update vue-craftcms to add search query.
+
 ## 0.2.1
 
 ### Patch Changes
