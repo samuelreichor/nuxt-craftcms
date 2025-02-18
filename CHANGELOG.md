@@ -1,5 +1,14 @@
 # nuxt-craftcms
 
+## 0.2.3
+
+### Patch Changes
+
+- bd7f394: - Update vue-craftcms to add new sitemap option in the install
+  - Add `useCraftFullUrl` composable to get the full absolute url
+  - Add `useCraftCurrentSite` composable to get the current site
+  - Add `useCraftUri` composable to get the correct uri based on the current site origin
+
 ## 0.2.2
 
 ### Patch Changes
