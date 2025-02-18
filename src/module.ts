@@ -1,4 +1,4 @@
-import { addPlugin, defineNuxtModule, addImportsDir, addComponent, createResolver } from '@nuxt/kit'
+import { addPlugin, defineNuxtModule, addImports, addComponent, createResolver } from '@nuxt/kit'
 import { defaultOptions, type CraftCmsOptions } from 'vue-craftcms'
 
 export default defineNuxtModule<Required<CraftCmsOptions>>({
@@ -27,12 +27,13 @@ export default defineNuxtModule<Required<CraftCmsOptions>>({
     addPlugin(resolver.resolve('./runtime/plugin'))
 
     // Add auto imports for components
-    const names = [
+    const componentes = [
       'CraftPage',
       'CraftArea',
       'CraftNotImplemented',
     ]
-    for (const name of names) {
+
+    for (const name of componentes) {
       addComponent({
         name: name,
         export: name,
@@ -40,7 +41,25 @@ export default defineNuxtModule<Required<CraftCmsOptions>>({
       })
     }
 
-    // Add composables
-    addImportsDir(resolver.resolve('runtime/composables'))
+    // Add auto imports for composables
+    const composables = [
+      'useCraftFullUrl',
+      'useCraftCurrentSite',
+      'useCraftUri',
+    ]
+
+    for (const name of composables) {
+      addImports({
+        name: name,
+        as: name,
+        from: resolver.resolve('runtime/composables/useComposables'),
+      })
+    }
+
+    addImports({
+      name: 'useCraftQuery',
+      as: 'useCraftQuery',
+      from: resolver.resolve('runtime/composables/useCraftQuery'),
+    })
   },
 })
