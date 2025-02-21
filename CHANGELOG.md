@@ -1,5 +1,14 @@
 # nuxt-craftcms
 
+## 0.3.0
+
+### Minor Changes
+
+- 85a2c8b: Add `useCraftFullUrl` composable to get the full absolute url
+- 85a2c8b: Add `useCraftCurrentSite` composable to get the current site
+- 85a2c8b: Add `useCraftUri` composable to get the correct uri based on the current site origin
+- 1cebb05: Update vue-craftcms for sitemap option support
+
 ## 0.2.2
 
 ### Patch Changes
