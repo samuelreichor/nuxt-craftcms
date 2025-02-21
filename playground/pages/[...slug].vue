@@ -10,8 +10,8 @@ import Headline from '~/templates/components/headline.vue'
 
 const mapping: Config = {
   pages: {
-    home: Home,
-    news: News,
+    'home': Home,
+    'news:home': News,
   },
   components: {
     imageText: ImageText,
@@ -19,9 +19,11 @@ const mapping: Config = {
   },
 }
 
-const route = useRoute()
-const uri = route.params.slug.length > 0 ? route.params.slug : '__home__'
-const { data, error } = await useCraftQuery('entries').uri(uri).one()
+const uri = useCraftUri()
+console.log(uri.value)
+const currentSite = useCraftCurrentSite()
+console.log(currentSite.value)
+const { data, error } = await useCraftQuery('entries').uri(uri.value).site(currentSite.value.handle).one()
 
 if (error.value) {
   console.error(error.value)
