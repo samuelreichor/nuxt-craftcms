@@ -23,3 +23,19 @@ export function useCraftQuery<T extends ElementType>(elementType: T) {
     },
   }
 }
+
+export function useCraftEntry() {
+  return useCraftQuery<'entries'>('entries')
+}
+
+export function useCraftAddress() {
+  return useCraftQuery<'addresses'>('addresses')
+}
+
+export function useCraftAsset() {
+  return useCraftQuery<'assets'>('assets')
+}
+
+export function useCraftUser() {
+  return useCraftQuery<'users'>('users')
+}

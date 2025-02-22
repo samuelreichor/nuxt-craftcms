@@ -23,8 +23,11 @@ const uri = useCraftUri()
 console.log(uri.value)
 const currentSite = useCraftCurrentSite()
 console.log(currentSite.value)
-const { data, error } = await useCraftQuery('entries').uri(uri.value).site(currentSite.value.handle).one()
 
+const { data: entry } = await useCraftEntry().uri(uri.value).site(currentSite.value.handle).one()
+console.log(entry.value)
+
+const { data, error } = await useCraftQuery('entries').uri(uri.value).site(currentSite.value.handle).one()
 if (error.value) {
   console.error(error.value)
 }

@@ -56,10 +56,20 @@ export default defineNuxtModule<Required<CraftCmsOptions>>({
       })
     }
 
-    addImports({
-      name: 'useCraftQuery',
-      as: 'useCraftQuery',
-      from: resolver.resolve('runtime/composables/useCraftQuery'),
-    })
+    const queryComposables = [
+      'useCraftQuery',
+      'useCraftEntry',
+      'useCraftAddress',
+      'useCraftAsset',
+      'useCraftUser',
+    ]
+
+    for (const name of queryComposables) {
+      addImports({
+        name: name,
+        as: name,
+        from: resolver.resolve('runtime/composables/useCraftQuery'),
+      })
+    }
   },
 })
