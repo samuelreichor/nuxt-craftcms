@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 0.4.0
+
+### Minor Changes
+
+- 0f85dfb: Add new composables for data queries
+
 ## 0.3.1
 
 ### Patch Changes
