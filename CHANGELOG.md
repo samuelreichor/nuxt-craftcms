@@ -1,5 +1,12 @@
 # nuxt-craftcms
 
+## 0.3.1
+
+### Patch Changes
+
+- d236f3c: Fix reactivity issues of useCraftUri and useCraftCurrentSite composabales
+  Update vue-craftcms
+
 ## 0.3.0
 
 ### Minor Changes
