@@ -1,8 +1,9 @@
-import type { CraftSites } from 'vue-craftcms'
+import type { CraftSites, CraftSite } from 'vue-craftcms'
+import type { Ref } from 'vue'
 import { reactive, toRaw } from 'vue'
 
-export function getCurrentSite(siteMap: CraftSites, url: string) {
-  const normUrl = normalizeUrl(url)
+export function getCurrentSite(siteMap: CraftSites, url: Ref<string>) {
+  const normUrl = normalizeUrl(url.value)
   const sortedSiteMap = sortSitesByOrigin(siteMap)
   for (const site of sortedSiteMap) {
     if (normUrl.startsWith(normalizeUrl(site.origin))) {
@@ -16,11 +17,11 @@ export function getCurrentSite(siteMap: CraftSites, url: string) {
   }
 }
 
-export function getSiteUri(url: string, currentOrigin: string): string {
-  const normUrl = normalizeUrl(url)
+export function getSiteUri(url: Ref<string>, currentSite: Ref<CraftSite>): string {
+  const normUrl = normalizeUrl(url.value)
     .split('#')[0] // Remove hash fragment
     .split('?')[0] // Remove query parameters
-    .replace(normalizeUrl(currentOrigin), '') // Remove origin
+    .replace(normalizeUrl(currentSite.value.origin), '') // Remove origin
     .replace(/^\/+/, '') // Remove leading slashes
     .replace(/\/+$/, '') // Remove trailing slashes
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { getCurrentSite, getSiteUri, normalizeUrl, sortSitesByOrigin } from '../../src/runtime/utils/helper'
 
 const mockSiteMap = [
@@ -8,14 +8,16 @@ const mockSiteMap = [
   { handle: 'usa', id: 3, origin: 'https://google.com/usa' },
 ]
 
+const mockCurrentSite = ref(mockSiteMap[0])
+
 describe('getCurrentSite', () => {
   it('should return the correct site based on the URL', () => {
-    const result = getCurrentSite(mockSiteMap, 'https://google.com/usa/page/slug')
+    const result = getCurrentSite(mockSiteMap, ref('https://google.com/usa/page/slug'))
     expect(result).toEqual({ handle: 'usa', id: 3, origin: 'https://google.com/usa' })
   })
 
   it('should return the first site if no match is found', () => {
-    const result = getCurrentSite(mockSiteMap, 'https://unknown-site.com/page')
+    const result = getCurrentSite(mockSiteMap, ref('https://unknown-site.com/page'))
     expect(result).toEqual({ handle: 'en', id: 1, origin: 'https://google.com' }) // First entry as fallback
   })
 
@@ -24,35 +26,35 @@ describe('getCurrentSite', () => {
       { handle: 'en', id: 1, origin: 'https://example.com' },
       { handle: 'de', id: 2, origin: 'https://example.com/sub' },
     ]
-    const result = getCurrentSite(extendedSiteMap, 'https://example.com/sub/page')
+    const result = getCurrentSite(extendedSiteMap, ref('https://example.com/sub/page'))
     expect(result).toEqual({ handle: 'de', id: 2, origin: 'https://example.com/sub' })
   })
 
   it('should handle URLs without protocol correctly', () => {
-    expect(getCurrentSite(mockSiteMap, 'google.com/path')).toEqual({ handle: 'en', id: 1, origin: 'https://google.com' })
+    expect(getCurrentSite(mockSiteMap, ref('google.com/path'))).toEqual({ handle: 'en', id: 1, origin: 'https://google.com' })
   })
 })
 
 describe('getSiteUri', () => {
   it('should return the correct URI relative to the origin', () => {
-    const result = getSiteUri('https://google.com/some/path', 'https://google.com')
+    const result = getSiteUri(ref('https://google.com/some/path'), mockCurrentSite)
     expect(result).toBe('some/path')
   })
 
   it('should return "__home__" if the URL is the site root', () => {
-    expect(getSiteUri('https://google.com', 'https://google.com')).toBe('__home__')
+    expect(getSiteUri(ref('https://google.com'), mockCurrentSite)).toBe('__home__')
   })
 
   it('should remove multiple leading and trailing slashes', () => {
-    expect(getSiteUri('https://google.com////path', 'https://google.com')).toBe('path')
+    expect(getSiteUri(ref('https://google.com////path'), mockCurrentSite)).toBe('path')
   })
 
   it('should remove hash and query fragments', () => {
-    expect(getSiteUri('https://google.com/page#section?test=1', 'https://google.com')).toBe('page')
+    expect(getSiteUri(ref('https://google.com/page#section?test=1'), mockCurrentSite)).toBe('page')
   })
 
   it('should correctly handle a URI-encoded URL', () => {
-    expect(getSiteUri('https://google.com/some%20very%2Fstrange%2Dpath', 'https://google.com'))
+    expect(getSiteUri(ref('https://google.com/some%20very%2Fstrange%2Dpath'), mockCurrentSite))
       .toBe('some%20very%2Fstrange%2Dpath')
   })
 })

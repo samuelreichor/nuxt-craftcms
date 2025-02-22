@@ -25,13 +25,18 @@ export function useCraftCurrentSite() {
 
   const fullUrl = useCraftFullUrl()
 
-  return computed(() => getCurrentSite(siteMap, fullUrl.value))
+  return computed(() => getCurrentSite(siteMap, fullUrl))
 }
 
 export function useCraftUri() {
+  const { siteMap } = useRuntimeConfig().public.craftcms as CraftCmsOptions
+  if (!siteMap) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Please ensure that a valid sitemap is defined in your app.config.ts file.',
+    })
+  }
   const fullUrl = useCraftFullUrl()
   const currentSite = useCraftCurrentSite()
-  const config = useRuntimeConfig()
-  const origin = currentSite ? currentSite.value.origin : config.app.baseURL
-  return computed(() => getSiteUri(fullUrl.value, origin))
+  return computed(() => getSiteUri(fullUrl, currentSite))
 }
