@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 0.4.1
+
+### Patch Changes
+
+- 0f3ccb5: Update vue-craftcms to fix extraneous non-props error in craft area
+
 ## 0.4.0
 
 ### Minor Changes
