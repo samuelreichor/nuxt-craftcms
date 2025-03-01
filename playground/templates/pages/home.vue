@@ -7,7 +7,7 @@ const props = defineProps({
     required: true,
   },
   contentBuilder: {
-    type: Object,
+    type: Array,
     required: true,
   },
   sectionHandle: {
@@ -39,7 +39,7 @@ type NewsArticle = {
 const { data, error } = await useCraftQuery('entries')
   .section('news')
   .fields(['title'])
-  .limit(3)
+  .siteId([1, 2, 3])
   .all()
 
 if (error.value) {
