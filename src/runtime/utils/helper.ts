@@ -1,27 +1,16 @@
-import type { CraftSites, CraftSite } from 'vue-craftcms'
+import { type CraftSites, type CraftSite, type SiteDetectionMode, siteDetectionMode } from 'vue-craftcms'
 import type { Ref } from 'vue'
-import { reactive, toRaw } from 'vue'
 
-export function getCurrentSite(siteMap: CraftSites, url: Ref<string>) {
-  const normUrl = normalizeUrl(url.value)
-  const sortedSiteMap = sortSitesByOrigin(siteMap)
-  for (const site of sortedSiteMap) {
-    if (normUrl.startsWith(normalizeUrl(site.origin))) {
-      return site
-    }
-  }
-
-  const site = siteMap[0]
-  return {
-    ...site,
-  }
+export function getCurrentSite(siteMap: CraftSites, url: Ref<string>, mode: SiteDetectionMode): CraftSite {
+  const sortedSiteMap = getSortedSitesByMatching(siteMap, mode)
+  return sortedSiteMap.find(site => url.value.startsWith(getSiteByMatching(site, mode))) ?? siteMap[0]
 }
 
-export function getSiteUri(url: Ref<string>, currentSite: Ref<CraftSite>): string {
+export function getSiteUri(url: Ref<string>, currentSite: Ref<CraftSite>, mode: SiteDetectionMode): string {
   const normUrl = normalizeUrl(url.value)
     .split('#')[0] // Remove hash fragment
     .split('?')[0] // Remove query parameters
-    .replace(normalizeUrl(currentSite.value.origin), '') // Remove origin
+    .replace(normalizeUrl(getSiteByMatching(currentSite.value, mode)), '') // Remove origin
     .replace(/^\/+/, '') // Remove leading slashes
     .replace(/\/+$/, '') // Remove trailing slashes
 
@@ -34,8 +23,15 @@ export function normalizeUrl(url: string) {
     .replace(/^www\./, '')
 }
 
-export function sortSitesByOrigin(siteMap: CraftSites) {
-  const rawSitemap = toRaw(siteMap)
+export function getSiteByMatching(currentSite: CraftSite, mode: SiteDetectionMode) {
+  return mode === siteDetectionMode.PATH ? currentSite.path! : currentSite.origin!
+}
 
-  return reactive([...rawSitemap].sort((a, b) => b.origin.length - a.origin.length))
+export function getSortedSitesByMatching(siteMap: CraftSites, mode: SiteDetectionMode) {
+  return [...siteMap].sort((a, b) => {
+    const keyA = mode === siteDetectionMode.PATH ? a.path || '' : a.origin || ''
+    const keyB = mode === siteDetectionMode.PATH ? b.path || '' : b.origin || ''
+
+    return keyB.length - keyA.length
+  })
 }

@@ -3,25 +3,34 @@ export default defineNuxtConfig({
 
   craftcms: {
     baseUrl: 'https://backend-craftcms.ddev.site:8443',
+    debug: true,
+    siteDetectionMode: 'path',
     siteMap: [
       {
         handle: 'en',
-        id: 1,
+        path: '/en',
         origin: 'http://localhost:3000/en',
+        id: 1,
       },
       {
         handle: 'de',
-        id: 2,
+        path: '/',
         origin: 'http://localhost:3000',
+        id: 2,
       },
       {
         handle: 'es',
-        id: 3,
+        path: '/es',
         origin: 'http://localhost:3000/es',
+        id: 3,
       },
     ],
   },
 
   devtools: { enabled: true },
   compatibilityDate: '2024-10-10',
+
+  routeRules: {
+    '/': { prerender: true },
+  },
 })
