@@ -56,6 +56,12 @@ export default defineNuxtModule<Required<CraftCmsOptions>>({
       })
     }
 
+    addImports({
+      name: 'useCraftSeoMatic',
+      as: 'useCraftSeoMatic',
+      from: resolver.resolve('runtime/composables/useCraftSeoMatic'),
+    })
+
     const queryComposables = [
       'useCraftQuery',
       'useCraftEntry',
