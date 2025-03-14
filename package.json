@@ -1,6 +1,6 @@
 {
   "name": "nuxt-craftcms",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Nuxt module to use craft cms query builder in nuxt",
   "repository": "https://github.com/samuelreichor/nuxt-craftcms",
   "license": "MIT",

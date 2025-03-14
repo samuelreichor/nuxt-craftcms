@@ -1,5 +1,13 @@
 # nuxt-craftcms
 
+## 0.5.0
+
+### Minor Changes
+
+- ace6cc7: Add useCraftSeoMatic composable to get SeoMatic information quickly
+  Update vue-craftcms to get new site detection method
+  Fix context issue of useCraftCurrentSite composable
+
 ## 0.4.1
 
 ### Patch Changes
