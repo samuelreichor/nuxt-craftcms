@@ -3,11 +3,6 @@ import { getCurrentSite, getSiteUri } from '../utils/helper'
 import { useRuntimeConfig, useRoute, createError, useRequestURL } from '#app'
 import { computed } from '#imports'
 
-export function useCraftFullUrl() {
-  const useRequest = useRequestURL()
-  return computed(() => useRequest.href)
-}
-
 export function useCraftCurrentSite() {
   const { siteMap, siteDetectionMode } = useRuntimeConfig().public.craftcms as Required<CraftCmsOptions>
   if (!siteMap || siteMap.length === 0) {
@@ -25,5 +20,9 @@ export function useCraftUri() {
 }
 
 function useUrlByMatching(mode: SiteDetectionMode) {
-  return computed(() => (mode === siteDetectionMode.PATH ? useRoute().path : useCraftFullUrl().value))
+  const useRequest = useRequestURL()
+  const route = useRoute()
+  const fullUrl = computed(() => useRequest.href)
+  const fullRoute = computed(() => route.path)
+  return mode === siteDetectionMode.PATH ? fullRoute : fullUrl
 }
