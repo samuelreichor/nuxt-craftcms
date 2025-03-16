@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 0.5.1
+
+### Patch Changes
+
+- 6139928: Remove early days warning in readme and update vue-craftcms
+
 ## 0.5.0
 
 ### Minor Changes
