@@ -1,10 +1,21 @@
 {
   "name": "nuxt-craftcms",
   "version": "0.5.0",
-  "description": "Nuxt module to use craft cms query builder in nuxt",
+  "description": "Nuxt module to use craft cms query builder directly in nuxt",
   "repository": "https://github.com/samuelreichor/nuxt-craftcms",
   "license": "MIT",
   "type": "module",
+  "author": "Samuel Reichoer",
+  "bugs": {
+    "url": "https://github.com/samuelreichor/nuxt-craftcms/issues"
+  },
+  "homepage": "https://samuelreichor.at/libraries/nuxt-craftcms",
+  "keywords": [
+    "Craft CMS",
+    "Nuxt",
+    "Query Builder",
+    "Query API"
+  ],
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
@@ -33,7 +44,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.13.2",
-    "vue-craftcms": "0.3.3"
+    "vue-craftcms": "0.3.4"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",

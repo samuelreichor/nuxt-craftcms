@@ -5,8 +5,8 @@
 ### Minor Changes
 
 - ace6cc7: Add useCraftSeoMatic composable to get SeoMatic information quickly
-  Update vue-craftcms to get new site detection method
-  Fix context issue of useCraftCurrentSite composable
+- d782ac8: Update vue-craftcms to get new site detection method
+- 3d32427: Fix context issue of useCraftCurrentSite composable
 
 ## 0.4.1
 

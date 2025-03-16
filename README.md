@@ -21,16 +21,14 @@
   </a>
 </p>
 
-> [!WARNING]  
-> This npm package is still in production and important features may change.
-
-
 ## Features
 
-- Easily build and execute queries directly from Nuxt.
-- Connect your data directly with your Vue components, to speed up development.
+- Easily query data from Craft CMS with a Craft like query builder in Nuxt.
+- Connect your data directly with your Vue components.
+- Composable to fetch and transform your SEOMatic data.
+- Composables to get current site and current uri for multi sites.
 - Avoid overfetching by using a custom function in the query builder to select only the fields you require.
-- Json Transformer are in place to prettify the response.
+- Json Transformer in [Craft Query API](https://github.com/samuelreichor/craft-query-api) prettify the response.
 - Query addresses, assets, entries and users.
 
 ## Requirements
