@@ -35,3 +35,16 @@ export function getSortedSitesByMatching(siteMap: CraftSites, mode: SiteDetectio
     return keyB.length - keyA.length
   })
 }
+
+export function getBearerToken(token: string) {
+  const trimmedToken = token.trim()
+  if (trimmedToken.startsWith('Bearer')) {
+    return trimmedToken
+  }
+
+  if (trimmedToken.startsWith('bearer')) {
+    return trimmedToken
+  }
+
+  return `Bearer ${trimmedToken}`
+}

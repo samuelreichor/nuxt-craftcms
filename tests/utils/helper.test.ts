@@ -6,6 +6,7 @@ import {
   getSiteUri,
   normalizeUrl,
   getSortedSitesByMatching,
+  getBearerToken,
 } from '../../src/runtime/utils/helper'
 
 // Mock site maps
@@ -136,5 +137,14 @@ describe('useUrlByMatching', () => {
   it('should return the full URL when pathMatching is disabled', () => {
     const useFullUrlMock = () => ref('https://google.com/de/some-page')
     expect(useFullUrlMock().value).toBe('https://google.com/de/some-page')
+  })
+})
+
+describe('getBearerToken', () => {
+  it('should return a correctly formated bearer token', () => {
+    const tokenArr = ['xxx', '  xxx  ', 'Bearer xxx', '   Bearer xxx ']
+    tokenArr.forEach((token) => {
+      expect(getBearerToken(token)).toBe('Bearer xxx')
+    })
   })
 })

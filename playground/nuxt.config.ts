@@ -3,6 +3,7 @@ export default defineNuxtConfig({
 
   craftcms: {
     baseUrl: 'https://backend-craftcms.ddev.site:8443',
+    authToken: 'Bearer tyE9LViYm0HvcVbUErN1wwIa3qyeby1K',
     debug: true,
     siteDetectionMode: 'path',
     siteMap: [

@@ -46,6 +46,7 @@ export default defineNuxtModule<Required<CraftCmsOptions>>({
       'useCraftFullUrl',
       'useCraftCurrentSite',
       'useCraftUri',
+      'useCraftFetch',
     ]
 
     for (const name of composables) {
