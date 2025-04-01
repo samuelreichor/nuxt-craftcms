@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 1.0.1
+
+### Patch Changes
+
+- e6b00c8: Fix hydration error in useCraftFetch due to missing key in default fetch options.
+
 ## 1.0.0
 
 ### Major Changes
