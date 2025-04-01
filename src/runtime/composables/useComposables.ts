@@ -3,7 +3,7 @@ import { defu } from 'defu'
 import { getBearerToken, getCurrentSite, getSiteUri } from '../utils/helper'
 import { useRuntimeConfig, useRoute, createError, useRequestURL, useFetch } from '#app'
 import type { UseFetchOptions } from '#app'
-import { computed } from '#imports'
+import { computed, toValue } from '#imports'
 import type { Ref } from '#imports'
 
 export function useCraftCurrentSite() {
@@ -29,6 +29,7 @@ export function useCraftFetch<T>(
   const authToken = useAuthToken()
 
   const defaults: UseFetchOptions<T> = {
+    key: toValue(url),
     headers: {
       Authorization: authToken,
     },
