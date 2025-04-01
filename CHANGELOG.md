@@ -1,5 +1,14 @@
 # nuxt-craftcms
 
+## 1.0.0
+
+### Major Changes
+
+- 1254c24: Now you need to define an auth token in the plugin options. Otherwise your fetch will fail. This ensures that you only can query what you are supposed to query.
+- 1254c24: Added an new useCraftFetch composable to fetch data from the craft query api with an auth token.
+- 1254c24: Added new helper function to apply the bearer token in the correct format and add tests for it.
+- 1254c24: Updated vue-craftcms library.
+
 ## 0.5.1
 
 ### Patch Changes
