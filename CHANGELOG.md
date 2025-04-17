@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 1.0.2
+
+### Patch Changes
+
+- b799c3d: Update vue-craftcms to get admin() user query.
+
 ## 1.0.1
 
 ### Patch Changes
