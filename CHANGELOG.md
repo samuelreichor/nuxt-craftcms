@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 1.0.3
+
+### Patch Changes
+
+- b604ee8: Fix wrong export of helper composables and some naming and codestyle issues.
+
 ## 1.0.2
 
 ### Patch Changes
