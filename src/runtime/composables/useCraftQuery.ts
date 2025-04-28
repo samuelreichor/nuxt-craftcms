@@ -1,10 +1,10 @@
 import type { ElementType } from 'js-craftcms-api'
 import { useCraftUrlBuilder } from 'vue-craftcms'
-import { useAuthToken } from './useComposables'
+import { useCraftAuthToken } from './useComposables'
 import { useAsyncData } from '#imports'
 
 function fetchFn(url: string) {
-  const authToken = useAuthToken()
+  const authToken = useCraftAuthToken()
   return useAsyncData(`craftcms:${url}`, () => $fetch(url, {
     headers: {
       Authorization: authToken,

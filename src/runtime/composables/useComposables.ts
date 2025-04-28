@@ -26,7 +26,7 @@ export function useCraftFetch<T>(
   url: Ref<string> | string | (() => string),
   options?: UseFetchOptions<T>,
 ): ReturnType<typeof useFetch<T>> {
-  const authToken = useAuthToken()
+  const authToken = useCraftAuthToken()
 
   const defaults: UseFetchOptions<T> = {
     key: toValue(url),
@@ -39,7 +39,7 @@ export function useCraftFetch<T>(
   return useFetch(url, params) as ReturnType<typeof useFetch<T>>
 }
 
-export function useAuthToken() {
+export function useCraftAuthToken() {
   const { authToken } = useRuntimeConfig().public.craftcms as Required<CraftCmsOptions>
 
   if (!authToken) {
@@ -56,6 +56,6 @@ function useUrlByMatching(mode: SiteDetectionMode) {
   const useRequest = useRequestURL()
   const route = useRoute()
   const fullUrl = computed(() => useRequest.href)
-  const fullRoute = computed(() => route.path)
-  return mode === siteDetectionMode.PATH ? fullRoute : fullUrl
+  const fullPath = computed(() => route.path)
+  return mode === siteDetectionMode.PATH ? fullPath : fullUrl
 }

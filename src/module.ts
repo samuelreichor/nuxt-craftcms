@@ -43,10 +43,10 @@ export default defineNuxtModule<Required<CraftCmsOptions>>({
 
     // Add auto imports for composables
     const composables = [
-      'useCraftFullUrl',
       'useCraftCurrentSite',
       'useCraftUri',
       'useCraftFetch',
+      'useCraftAuthToken',
     ]
 
     for (const name of composables) {
