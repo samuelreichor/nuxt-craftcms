@@ -1,4 +1,5 @@
 import type { AsyncDataOptions } from 'nuxt/app'
+import type { CraftCmsOptions } from 'vue-craftcms'
 import { useCraftCurrentSite, useCraftUri } from './useComposables'
 import { useRuntimeConfig, useAsyncData, createError } from '#app'
 import { computed } from '#imports'
@@ -78,7 +79,7 @@ export function useCraftSeoMatic<T = TransformedSeoData>(
       })
     }
 
-    const { baseUrl } = config.public.craftcms
+    const { baseUrl } = config.public.craftcms as CraftCmsOptions
     return `${baseUrl}/actions/seomatic/meta-container/all-meta-containers/?asArray=true&uri=${encodeURIComponent(currentUri.value)}&siteId=${currentSite.value.id}`
   })
 
