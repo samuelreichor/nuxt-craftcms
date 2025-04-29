@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CraftArea } from 'vue-craftcms'
+import { useCraftQuery } from '#imports'
 
 const props = defineProps({
   metadata: {
