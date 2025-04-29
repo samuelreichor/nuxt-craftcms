@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 1.1.0
+
+### Minor Changes
+
+- 910e677: Add ability to use generics to querybuilder composables and fix small type issue in `useCraftSeoMatic` composable
+
 ## 1.0.3
 
 ### Patch Changes
