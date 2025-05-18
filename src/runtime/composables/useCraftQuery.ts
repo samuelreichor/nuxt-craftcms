@@ -1,8 +1,10 @@
 import type { ElementType, ExecutionMethod, QueryBuilder } from 'js-craftcms-api'
-import { useCraftUrlBuilder } from 'vue-craftcms'
+import { buildCraftQueryUrl, getPreviewParams } from 'js-craftcms-api'
+import type { CraftCmsOptions } from 'vue-craftcms'
 import { useCraftAuthToken } from './useComposables'
-import { useAsyncData } from '#imports'
+import { useAsyncData, useRuntimeConfig, useRoute } from '#imports'
 import type { AsyncData, NuxtError } from '#app'
+import type { LocationQuery } from '#vue-router'
 
 function fetchFn<ResT>(url: string) {
   const authToken = useCraftAuthToken()
@@ -11,6 +13,26 @@ function fetchFn<ResT>(url: string) {
       Authorization: authToken,
     },
   }))
+}
+
+function constuctUrl(baseUrl: string, queryUrl: string, debug: boolean, queryParams: LocationQuery) {
+  if (!(baseUrl || queryUrl || queryParams)) {
+    throw new Error('Please provide baseUrl, queryUrl and queryParams for constructUrl function.')
+  }
+
+  let url = `${baseUrl}${queryUrl}`
+
+  const previewParams = getPreviewParams(queryParams as Record<string, string>)
+
+  if (previewParams) {
+    url += `&${previewParams}`
+  }
+
+  if (debug) {
+    console.log(url)
+  }
+
+  return url
 }
 
 export type PickFrom<T, K extends Array<string>> = T extends Array<unknown> ? T : T extends Record<string, unknown> ? keyof T extends K[number] ? T : K[number] extends never ? T : Pick<T, K[number]> : T
@@ -23,18 +45,22 @@ type ReturnType<ResT, T extends ElementType> = QueryBuilder<T> & {
 }
 
 export function useCraftQuery<ResT, T extends ElementType>(elementType: T): ReturnType<ResT, T> {
-  const queryBuilder = useCraftUrlBuilder(elementType)
+  const queryBuilder = buildCraftQueryUrl(elementType, { autoPreview: false })
+  const { baseUrl, debug } = useRuntimeConfig().public.craftcms as Required<CraftCmsOptions>
+  const { query: queryParams } = useRoute()
 
   return {
     ...queryBuilder,
 
     one() {
-      const url = queryBuilder.buildUrl('one')
+      const queryUrl = queryBuilder.buildBaseUrl('one')
+      const url = constuctUrl(baseUrl, queryUrl, debug, queryParams)
       return fetchFn<ResT>(url)
     },
 
     all() {
-      const url = queryBuilder.buildUrl('all')
+      const queryUrl = queryBuilder.buildBaseUrl('all')
+      const url = constuctUrl(baseUrl, queryUrl, debug, queryParams)
       return fetchFn<ResT>(url)
     },
   } as ReturnType<ResT, T>

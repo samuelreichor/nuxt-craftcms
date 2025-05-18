@@ -9,14 +9,14 @@ export default defineNuxtConfig({
     siteMap: [
       {
         handle: 'en',
-        path: '/en',
-        origin: 'http://localhost:3000/en',
+        path: '/',
+        origin: 'http://localhost:3000',
         id: 1,
       },
       {
         handle: 'de',
-        path: '/',
-        origin: 'http://localhost:3000',
+        path: '/de',
+        origin: 'http://localhost:3000/de',
         id: 2,
       },
       {

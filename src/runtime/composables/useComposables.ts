@@ -1,9 +1,10 @@
 import { siteDetectionMode, type CraftCmsOptions, type SiteDetectionMode } from 'vue-craftcms'
+import { getPreviewParams } from 'js-craftcms-api'
 import { defu } from 'defu'
 import { getBearerToken, getCurrentSite, getSiteUri } from '../utils/helper'
 import { useRuntimeConfig, useRoute, createError, useRequestURL, useFetch } from '#app'
 import type { UseFetchOptions } from '#app'
-import { computed, toValue } from '#imports'
+import { computed, unref } from '#imports'
 import type { Ref } from '#imports'
 
 export function useCraftCurrentSite() {
@@ -26,17 +27,23 @@ export function useCraftFetch<T>(
   url: Ref<string> | string | (() => string),
   options?: UseFetchOptions<T>,
 ): ReturnType<typeof useFetch<T>> {
+  // get bearer auth token
   const authToken = useCraftAuthToken()
 
+  // get & set preview tokens
+  const { query: queryParams } = useRoute()
+  const previewParams = getPreviewParams(queryParams as Record<string, string>)
+  const apiUrl = previewParams ? computed(() => `${unref(url)}&${previewParams}`) : url
+
   const defaults: UseFetchOptions<T> = {
-    key: toValue(url),
+    key: unref(apiUrl),
     headers: {
       Authorization: authToken,
     },
   }
 
   const params = defu(options, defaults)
-  return useFetch(url, params) as ReturnType<typeof useFetch<T>>
+  return useFetch(apiUrl, params) as ReturnType<typeof useFetch<T>>
 }
 
 export function useCraftAuthToken() {
