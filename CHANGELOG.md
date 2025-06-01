@@ -1,5 +1,11 @@
 # nuxt-craftcms
 
+## 1.1.2
+
+### Patch Changes
+
+- 8b784a8: This package is no longer actively maintained. Please use the new **[`@query-api/nuxt`](https://github.com/samuelreichor/query-api/tree/main/packages/nuxt)** instead.
+
 ## 1.1.1
 
 ### Patch Changes
